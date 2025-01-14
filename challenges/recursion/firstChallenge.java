@@ -1,5 +1,5 @@
 class firstChallenge {
-    public static char firstChallenge(String word){
+    public static char findUpperCase(String word){
         char c = word.charAt(0);
         
         if (Character.isUpperCase(c)) {
@@ -9,10 +9,10 @@ class firstChallenge {
         if (word.length() == 1) {
             return '-1';
         }
-        return firstChallenge(word);
+        return findUpperCase(word);
     };
     
-    public static void firstChallenge(String[] args) {
-        System.out.println(firstChallenge("cs301atatructures"));
+    public static void findUpperCase(String[] args) {
+        System.out.println(findUpperCase("cs301atatructures"));
     }
 }
