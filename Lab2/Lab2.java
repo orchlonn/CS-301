@@ -88,7 +88,9 @@ public class Lab2
     {
         // create a temporary variable to store the item at index i
         int tmp = arr[i];
+        // swap the items at index i and j
         arr[i] = arr[j];
+        // assign the item at index i to the item at index j
         arr[j] = tmp;
     }
 
