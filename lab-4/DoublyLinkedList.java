@@ -55,7 +55,9 @@ class Node < T > {
       } else {
         // set the new node's next to the current head
         newNode.setNext(head);
+        // set the current head's prev to the new node
         head.setPrev(newNode);
+        // set the head to the new node
         head = newNode;
       }
       // increment the length by one
@@ -69,34 +71,44 @@ class Node < T > {
       if (isEmpty()) {
         head = tail = newNode;
       } else {
+        // set the new node's prev to the current tail
         newNode.setPrev(tail);
+        // set the current tail's next to the new node
         tail.setNext(newNode);
+        // set the tail to the new node
         tail = newNode;
       }
+      // increment the length by one
       length++;
     }
   
     public void insertAtIndex(int index, T data) {
+    // Verifying whether the index is out of bounds.
       if (index < 0 || index > length) {
         throw new IndexOutOfBoundsException("Invalid index");
       }
-  
+      // if that index is 0, that means there is no element in the list
+      // So that set that insert that element at the head
       if (index == 0) {
         insertAtFront(data);
         return;
       }
-  
+
+      // If that index equals to length that have to set at the tail
       if (index == length) {
         insertAtEnd(data);
         return;
       }
-  
+      
+      // traverse the list until we reach the index
       Node < T > current = head;
       for (int i = 0; i < index; i++) {
         current = current.getNext();
       }
-  
+      
+      // create a node with given data
       Node < T > newNode = new Node < > (data);
+      // Insert the value at the specified index and update the previous and next references.
       newNode.setPrev(current.getPrev());
       newNode.setNext(current);
       current.getPrev().setNext(newNode);
@@ -105,11 +117,12 @@ class Node < T > {
     }
   
     public void removeByIndex(int index) {
-      // 
+      // Verifying whether the index is out of bounds.
       if (index < 0 || index >= length) {
         throw new IndexOutOfBoundsException("Invalid index");
       }
-  
+
+      // Check if it's the head
       if (index == 0) {
         // Remove from front
         head = head.getNext();
@@ -136,6 +149,7 @@ class Node < T > {
     }
   
     public void removeByKey(T key) {
+      // Checks that the linked list empty or not
       if (isEmpty()) {
         return;
       }
@@ -181,10 +195,11 @@ class Node < T > {
       if (isEmpty()) {
         return -1;
       }
-  
+
       Node < T > current = head;
       int index = 0;
-  
+      
+      // Search for the key in the list
       while (current != null) {
         if (current.getData().equals(key)) {
           return index;
@@ -197,11 +212,12 @@ class Node < T > {
   
     }
   
-    // Helper function that checks if the linked list is empty or not
+    // I created this helper function that checks if the linked list is empty or not
     public boolean isEmpty() {
       return length == 0;
     }
-  
+
+    
     public void set(int index, T data) {
       if (index < 0 || index >= length) {
         throw new IndexOutOfBoundsException("Invalid index");
