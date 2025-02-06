@@ -246,7 +246,6 @@ class Node < T > {
       return length;
     }
   
-    @Override
     public String toString() {
       if (isEmpty()) {
         return "[]";

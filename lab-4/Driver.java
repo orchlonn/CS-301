@@ -39,5 +39,8 @@ public class Driver {
 
       // Display the size of the list
       System.out.println("Size of the list: " + list.size());
+      
+      // Represent the list as a string and display it
+      System.out.println(list.toString());
   }
 }
