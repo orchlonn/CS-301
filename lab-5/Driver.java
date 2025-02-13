@@ -5,7 +5,8 @@ public class Driver {
         EvaluateExpressions evaluator = new EvaluateExpressions();
         
         // Get the current directory and create full file paths
-        String currentDir = "/Users/chinbatorchlon/Documents/school/CS-301/lab-5";
+        // For TA, you will have to modify the currentDir. Replace it with your folder name.
+        String currentDir = "lab-5";
         String inputPath = currentDir + "/expressions.txt";
         String outputPath = currentDir + "/postFixExpressions.txt";
         
