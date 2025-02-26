@@ -11,13 +11,33 @@ public class Lab6
     */
     private static int[] problem1Iterative(Node root)
     {
-        // return ans;
-        // Implement me!
-        return new int[] {
-            -1, // nodes with 0 children
-            -1, // nodes with 1 child
-            -1  // nodes with 2 children
-        };
+      if (root == null) {
+        return new int[]{0, 0, 0};
+      }
+
+      int[] counts = new int[3];
+      ArrayList<Node> nodes = new ArrayList<>();
+      nodes.add(root);
+
+      int index = 0;
+
+      while (index < nodes.size()) {
+          Node current = nodes.get(index++);
+          int childCount = 0;
+
+          if (current.left != null) {
+              childCount++;
+              nodes.add(current.left);
+          }
+          if (current.right != null) {
+              childCount++;
+              nodes.add(current.right);
+          }
+
+          counts[childCount]++;
+        }
+        
+      return counts;
     }
 
 
@@ -26,14 +46,27 @@ public class Lab6
      *  Problem 1: Determine the number of nodes based on their number of children.
         Recursive Solution
     */
-    private static int[] problem1Recursive(Node root)
-    {
-        // Implement me!
-        return new int[] {
-            -1, // nodes with 0 children
-            -1, // nodes with 1 child
-            -1  // nodes with 2 children
-        };
+    private static int[] problem1Recursive(Node root) {
+        if (root == null) {
+            return new int[]{0, 0, 0};
+        }
+
+        int[] leftCounts = problem1Recursive(root.left);
+        int[] rightCounts = problem1Recursive(root.right);
+        int[] result = new int[3];
+
+        // Combine results from left and right subtrees
+        for (int i = 0; i < 3; i++) {
+            result[i] = leftCounts[i] + rightCounts[i];
+        }
+
+        // Count current node's children
+        int childCount = 0;
+        if (root.left != null) childCount++;
+        if (root.right != null) childCount++;
+        result[childCount]++;
+
+        return result;
     }
 
 
@@ -42,29 +75,53 @@ public class Lab6
      *  Problem 2: Determine the maximum distance from the root to a leaf.
         Iterative Solution
     */
-    private static int problem2Iterative(Node root)
-    {
+    private static int problem2Iterative(Node root) {
+        if (root == null) return 0;
+
+        int maxDepth = 0;
+        ArrayList<Node> nodes = new ArrayList<>();
+        ArrayList<Integer> depths = new ArrayList<>();
         
-     
-    
-        // Implement me!
-        return 0;
+        nodes.add(root);
+        depths.add(0);
+        int index = 0;
+
+        while (index < nodes.size()) {
+            Node current = nodes.get(index);
+            int currentDepth = depths.get(index);
+            index++;
+
+            if (current.left == null && current.right == null) {
+                maxDepth = Math.max(maxDepth, currentDepth);
+            }
+
+            if (current.left != null) {
+                nodes.add(current.left);
+                depths.add(currentDepth + 1);
+            }
+            if (current.right != null) {
+                nodes.add(current.right);
+                depths.add(currentDepth + 1);
+            }
+        }
+
+        return maxDepth;
     }
-    
     
     
     /**
      *  Problem 2: Determine the maximum distance from the root to a leaf.
         Recursive Solution
     */
-    private static int problem2Recursive(Node root)
-    {
-        // Implement me!
-        return -1;
-    }
-    
-    
-    
+    private static int problem2Recursive(Node root) {
+      if (root == null) return -1;
+      if (root.left == null && root.right == null) return 0;
+
+      int leftDepth = problem2Recursive(root.left);
+      int rightDepth = problem2Recursive(root.right);
+
+      return Math.max(leftDepth, rightDepth) + 1;
+  }    
     
 
     // ---------------------------------------------------------------------
