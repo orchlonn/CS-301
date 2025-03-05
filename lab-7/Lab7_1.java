@@ -25,31 +25,28 @@ public class Lab7_1 {
         private Node head;
         private Node tail;
         
-        // Insert with sorting during insertion
         public void insert(int n) {
             Node newNode = new Node(n);
             
-            // Empty list case
             if (head == null) {
                 head = tail = newNode;
                 return;
             }
             
-            // Insert in sorted position
             Node current = head;
             while (current != null && current.data < n) {
                 current = current.next;
             }
             
-            if (current == head) { // Insert at beginning
+            if (current == head) { 
                 newNode.next = head;
                 head.prev = newNode;
                 head = newNode;
-            } else if (current == null) { // Insert at end
+            } else if (current == null) {
                 newNode.prev = tail;
                 tail.next = newNode;
                 tail = newNode;
-            } else { // Insert in middle
+            } else { 
                 newNode.prev = current.prev;
                 newNode.next = current;
                 current.prev.next = newNode;
@@ -79,6 +76,6 @@ public class Lab7_1 {
             list.insert(num);
         }
         
-        System.out.println(list.sort()); // Output: 8, 12, 30, 55, 97, 103
+        System.out.println(list.sort()); 
     }
 }
