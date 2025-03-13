@@ -1,5 +1,4 @@
 package package8;
-
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +17,7 @@ public class MyVectorTest {
         MyVector v1 = new MyVector(values);
         MyVector v2 = new MyVector(v1);
         assertEquals(v1, v2);
-        assertNotSame(v1, v2); // Ensure it's a deep copy
+        assertNotSame(v1, v2); // Ensure deep copy
     }
 
     @Test
